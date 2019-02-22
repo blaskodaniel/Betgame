@@ -29,19 +29,19 @@ class MainMenu extends Component {
   render() {
     return (
       <div>
-        <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">Main menu</NavbarBrand>
+        <Navbar color="dark" dark expand="md">
+          <NavbarBrand href="/">Bet Game</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink><Link to="/">home</Link></NavLink>
+                <Link className="nav-link" to="/">Home</Link>
               </NavItem>
               <NavItem>
-                <NavLink><Link to="/about">About</Link></NavLink>
+                <Link className="nav-link" to="/about">About</Link>
               </NavItem>
               <NavItem>
-                <NavLink><Link to="/login">Login</Link></NavLink>
+                <Link className="nav-link" to="/login">Login</Link>
               </NavItem>
             </Nav>
           </Collapse>

@@ -11,9 +11,8 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <div className="container-fluid">
+          <div className="container-fluid p-0">
             <header className="App-header">
-              <h1 className="App-title">Welcome to React</h1>
               <MainMenu />
             </header>
           </div>
