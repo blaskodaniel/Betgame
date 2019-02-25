@@ -43,6 +43,9 @@ class MainMenu extends Component {
               <NavItem>
                 <Link className="nav-link" to="/login">Login</Link>
               </NavItem>
+              <NavItem>
+                <Link className="nav-link" to="/admin">Admin</Link>
+              </NavItem>
             </Nav>
           </Collapse>
         </Navbar>

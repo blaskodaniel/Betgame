@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import AdminLayout from "../Admin/Admin";
 import MainMenu from '../MainMenu/MainMenu';
 import Login from '../Login/Login';
 import About from '../About/About';
@@ -17,6 +18,9 @@ class App extends Component {
             </header>
           </div>
           <div className="container-fluid">
+            <Switch>
+              <Route path="/admin" render={props => <AdminLayout {...props} />} />
+            </Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/about" component={About} />

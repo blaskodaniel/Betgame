@@ -1,9 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './index.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import './index.css';
 import App from './components/App/App';
 import * as serviceWorker from './serviceWorker';
+
+import "./assets/scss/black-dashboard-react.scss";
+import "./assets/demo/demo.css";
+import "./assets/css/nucleo-icons.css";
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
