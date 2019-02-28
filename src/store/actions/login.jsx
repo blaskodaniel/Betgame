@@ -6,7 +6,7 @@ export const Loader = (value) => {
 }
 
 export const Login = (username, password) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
         // Run page loader
         dispatch(Loader(true));
 

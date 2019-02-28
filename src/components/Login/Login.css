@@ -1,0 +1,8 @@
+.loginContainer{
+    background: rgba(0,0,0,0.2);
+    padding: 35px;
+}
+
+.loginContainer input, .loginContainer input:focus{
+    color: white;
+}
