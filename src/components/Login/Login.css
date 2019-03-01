@@ -6,3 +6,15 @@
 .loginContainer input, .loginContainer input:focus{
     color: white;
 }
+
+.loginContainer input::-webkit-input-placeholder { /* Edge */
+    color: white;
+  }
+  
+  .loginContainer input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: white;
+  }
+  
+  .loginContainer input::placeholder {
+    color: white;
+  }
