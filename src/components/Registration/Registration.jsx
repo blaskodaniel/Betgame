@@ -46,7 +46,7 @@ class Registration extends Component {
         }
         return (
             <div className="d-flex flex-column justify-content-center align-items-center h-100">
-                <div className="m-3">
+                <div className="registrationcontainer">
                     <Form onSubmit={this.handleSubmit}>
                         <FormGroup>
                             <Label for="name" hidden>Name</Label>
@@ -61,10 +61,10 @@ class Registration extends Component {
                             <Input type="email" name="email" autoComplete="off" id="email" placeholder="Email" onChange={this.handleChange} />
                         </FormGroup>
                         <Button className="w-100">Registration</Button>
+                        <div className="mt-3">
+                            <Link to="/login">Login</Link>
+                        </div>
                     </Form>
-                </div>
-                <div className="m-3">
-                    <Link to="/Login">Login</Link>
                 </div>
             </div>
         );

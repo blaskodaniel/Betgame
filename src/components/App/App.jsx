@@ -28,10 +28,8 @@ class App extends Component {
       return (
         <div className="container-fluid" style={divStyle}>
           <Switch>
-            <Route exact path="/" component={Login} />
-            <Route path="/login" component={Login} />
             <Route path="/registration" component={Registration} />
-            <Route component={Notfound} />
+            <Route path="/" component={Login} />
           </Switch>
         </div>
       )

@@ -1,6 +1,8 @@
 .loginContainer{
-    background: rgba(0,0,0,0.2);
-    padding: 35px;
+    background: rgba(0,0,0,0.6);
+    padding: 22px;
+    position: absolute;
+    top:15%;
 }
 
 .loginContainer input, .loginContainer input:focus{
@@ -17,4 +19,10 @@
   
   .loginContainer input::placeholder {
     color: white;
+  }
+
+  @media only screen and (min-width: 300px) {
+    .loginContainer form{
+      min-width: 300px;
+    }
   }

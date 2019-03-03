@@ -3,29 +3,40 @@ import { connect } from 'react-redux';
 import { withRouter } from "react-router";
 import { Link } from 'react-router-dom';
 import * as AuthActions from '../../store/actions/login';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, FormFeedback, Alert } from 'reactstrap';
 import './Login.css';
 
-// Amit beküldünk a store-ba
-const mapDispatchToProps = (dispatch) => {
+// Amit beküldünk a store-ba (mapDispatchToProps)
+const toStore = (dispatch) => {
   return {
-    login: () => dispatch(AuthActions.Login('blaskoi', 'valami'))
+    login: (email, password) => dispatch(AuthActions.Login(email, password))
   }
 }
 
-// Amit kapunk a store-ból
-const mapStateToProps = (state, match) => {
+// Amit kapunk a store-ból (mapStateToProps)
+const fromStore = (state, match) => {
   console.log("LoginComponent: " + JSON.stringify(state))
   return {
-    loginstate: state.Login.authentication
+    loginstate: state.Login.authentication,
+    loginmsg: state.Login.msg
   }
 }
 
 class Login extends Component {
-  state = {
-    email: '',
-    password: ''
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      email: '',
+      password: '',
+      submitted: false,
+      loginerror: true
+    }
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
+
 
   handleChange = (e) => {
     this.setState({
@@ -36,35 +47,49 @@ class Login extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     console.log(this.state);
+
+    this.setState({ submitted: true });
+    if (this.state.email && this.state.password) {
+      this.props.login(this.state.email, this.state.password);
+    }
+
   }
 
   render() {
-    const { loginstate } = this.props;
+    const { loginstate, loginmsg } = this.props;
+    console.log("loginstate: " + loginstate);
+    console.log("loginmsg: " + loginmsg);
     if (loginstate) {
-      console.log("BE VAGYOK LÉPVE!");
+      console.log("Átirányítás a home page-re");
+      this.props.history.push("/");
       return null;
     }
     return (
-      <div className="d-flex flex-column justify-content-center align-items-center h-100">
-        <div className="m-3 loginContainer">
+      <div className="d-flex flex-column justify-content-center align-items-center h-100 m-1">
+        <div className="loginContainer">
           <Form onSubmit={this.handleSubmit}>
             <FormGroup>
               <Label for="email" hidden>Email</Label>
-              <Input type="email" name="email" autoComplete="off" id="email" placeholder="Email" onChange={this.handleChange} />
+              <Input type="email" name="email" autoComplete="off" id="email" placeholder="Email" onChange={this.handleChange} invalid={this.state.submitted && !this.state.email} />
+              <FormFeedback>Email cím kötelező</FormFeedback>
             </FormGroup>
             <FormGroup>
               <Label for="password" hidden>Password</Label>
-              <Input type="password" name="password" id="password" placeholder="Password" onChange={this.handleChange} />
+              <Input type="password" name="password" id="password" placeholder="Password" onChange={this.handleChange} invalid={this.state.submitted && !this.state.password} />
+              <FormFeedback>Jelszó kötelező</FormFeedback>
             </FormGroup>
             <Button className="w-100">Login</Button>
+            <Alert className="mt-3" color="danger" isOpen={!loginstate && loginmsg !== ""}>
+              Az email cím vagy jelszó nem megfelelő!
+            </Alert>
+            <div className="mt-3">
+              <Link to="/registration">Registration</Link>
+            </div>
           </Form>
-        </div>
-        <div className="m-3">
-          <Link to="/registration">Registration</Link>
         </div>
       </div>
     );
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
+export default withRouter(connect(fromStore, toStore)(Login));

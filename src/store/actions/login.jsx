@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export const Loader = (value) => {
     return {
         type: "LOADER",
@@ -10,16 +12,24 @@ export const Login = (username, password) => {
         // Run page loader
         dispatch(Loader(true));
 
-        // Run async request
-        fetch("https://jsonplaceholder.typicode.com/users")
-            .then(res => res.json())
-            .then(users => {
-                dispatch(LoginSuccess(users));
+        axios.post("http://mokasfoci.hu/login",{email:username,password:password})
+            .then(token => {
+                if(token){
+                    dispatch(LoginSuccess(token));
+                }else{
+                    dispatch(LoginError("Authentication failed!"));
+                }
+                
                 dispatch(Loader(false));
             }).catch(err => {
-                dispatch(LoginError(err));
+                if(err.response){
+                    dispatch(LoginError(err.response.data));
+                }else{
+                    dispatch(LoginError(err.message));
+                }
+                
                 dispatch(Loader(false));
-            })
+            });
     }
 }
 
