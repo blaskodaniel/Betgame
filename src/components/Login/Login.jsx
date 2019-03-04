@@ -1,3 +1,4 @@
+import config from '../../application.config';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router";
@@ -37,6 +38,9 @@ class Login extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    console.log("Login page did mount."+config.Config);
+  }
 
   handleChange = (e) => {
     this.setState({
