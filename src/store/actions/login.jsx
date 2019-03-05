@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { history } from '../_helpers';
 
 export const Loader = (value) => {
     return {
@@ -16,6 +17,7 @@ export const Login = (username, password) => {
             .then(token => {
                 if(token){
                     dispatch(LoginSuccess(token));
+                    history.push('/');
                 }else{
                     dispatch(LoginError("Authentication failed!"));
                 }
