@@ -28,7 +28,7 @@ class MainMenu extends Component {
   render() {
     return (
       <div>
-        <Navbar color="dark" dark expand="md">
+        <Navbar color="dark" dark expand="md" sticky="top" fixed="top">
           <NavbarBrand href="/">Bet Game</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>

@@ -61,8 +61,6 @@ class Login extends Component {
 
   render() {
     const { loginstate, loginmsg } = this.props;
-    console.log("loginstate: " + loginstate);
-    console.log("loginmsg: " + loginmsg);
     if (loginstate) {
       console.log("Átirányítás a home page-re");
       this.props.history.push("/");
@@ -83,7 +81,7 @@ class Login extends Component {
               <FormFeedback>Jelszó kötelező</FormFeedback>
             </FormGroup>
             <Button className="w-100">Login</Button>
-            <Alert className="mt-3" color="danger" isOpen={!loginstate && loginmsg !== ""}>
+            <Alert className="mt-3" color="danger" isOpen={!loginstate && loginmsg !== null && this.state.submitted}>
               Az email cím vagy jelszó nem megfelelő!
             </Alert>
             <div className="mt-3">

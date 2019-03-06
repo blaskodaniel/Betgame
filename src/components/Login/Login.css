@@ -7,6 +7,13 @@
 
 .loginContainer input, .loginContainer input:focus{
     color: white;
+    background-color: #2c3844;
+    border-color: aliceblue;
+    border-radius: 0;
+    border-bottom: 1;
+    border-right: 0;
+    border-top: 0;
+    border-left: 0;
 }
 
 .loginContainer input::-webkit-input-placeholder { /* Edge */

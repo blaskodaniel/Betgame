@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { history } from '../_helpers';
+import { history } from '../../_helpers';
 
 export const Loader = (value) => {
     return {
@@ -16,6 +16,7 @@ export const Login = (username, password) => {
         axios.post("http://mokasfoci.hu/login",{email:username,password:password})
             .then(token => {
                 if(token){
+                    localStorage.setItem('user', JSON.stringify(token.data.token));
                     dispatch(LoginSuccess(token));
                     history.push('/');
                 }else{

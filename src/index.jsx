@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { logger } from 'redux-logger';
 import rootReducer from './store/reducers/index';
+//import 'materialize-css/dist/css/materialize.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import App from './components/App/App';
