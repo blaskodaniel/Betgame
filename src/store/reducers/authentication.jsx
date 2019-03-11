@@ -1,9 +1,10 @@
 import { authChecker } from '../../_helpers/auth-checker';
 
 var defaultAuthState = { username: 'Visitor', role: 'visitor', email: null, authentication: false, msg: null };
+var baseState = defaultAuthState;
 const userToken = authChecker();
 if (userToken) {
-    defaultAuthState = {
+    baseState = {
         username: userToken.username,
         role: userToken.role,
         email: userToken.email,
@@ -12,10 +13,11 @@ if (userToken) {
     };
 }
 
-const Login = (state = defaultAuthState, action) => {
+export const Login = (state = baseState, action) => {
     const newState = { ...state };
     switch (action.type) {
         case 'LOGIN_SUCCESS':
+            let userToken = authChecker();
             newState.username = userToken.username;
             newState.role = userToken.role;
             newState.email = userToken.email;
@@ -34,5 +36,3 @@ const Login = (state = defaultAuthState, action) => {
             return newState
     }
 }
-
-export default Login

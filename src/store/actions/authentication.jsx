@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { history } from '../../_helpers';
 
 export const Loader = (value) => {
     return {
@@ -16,9 +15,8 @@ export const Login = (username, password) => {
         axios.post("http://mokasfoci.hu/login",{email:username,password:password})
             .then(token => {
                 if(token){
-                    localStorage.setItem('user', JSON.stringify(token.data.token));
+                    localStorage.setItem('user', token.data.token);
                     dispatch(LoginSuccess(token));
-                    history.push('/');
                 }else{
                     dispatch(LoginError("Authentication failed!"));
                 }
@@ -48,8 +46,4 @@ export const LoginError = (msg) => {
         type: 'LOGIN_ERROR',
         value: msg
     }
-}
-
-export const Logout = () => {
-    return { type: 'LOGOUT' }
 }

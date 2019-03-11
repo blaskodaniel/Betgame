@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router";
 import { Link } from 'react-router-dom';
-import * as AuthActions from '../../store/actions/login';
+import * as AuthActions from '../../store/actions/authentication';
 import { Button, Form, FormGroup, Label, Input, FormFeedback, Alert } from 'reactstrap';
 import './Login.css';
 
@@ -55,6 +55,7 @@ class Login extends Component {
     this.setState({ submitted: true });
     if (this.state.email && this.state.password) {
       this.props.login(this.state.email, this.state.password);
+      this.props.history.push("/home");
     }
 
   }
@@ -63,12 +64,11 @@ class Login extends Component {
     const { loginstate, loginmsg } = this.props;
     if (loginstate) {
       console.log("Átirányítás a home page-re");
-      this.props.history.push("/");
       return null;
     }
     return (
       <div className="d-flex flex-column justify-content-center align-items-center h-100 m-1">
-        <div className="loginContainer">
+        <div className="loginContainer bounceIn animated">
           <Form onSubmit={this.handleSubmit}>
             <FormGroup>
               <Label for="email" hidden>Email</Label>

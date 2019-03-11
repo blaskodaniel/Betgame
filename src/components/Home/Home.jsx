@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from "react-router";
 import './Home.css';
 
 class Home extends Component {
@@ -35,7 +37,7 @@ class Home extends Component {
           <div className="matchresult flex-fill text-center align-self-center">2</div>
           <div className="awayteam flex-fill text-left align-self-center">Újpest</div>
         </div>
-        <div className="openmorebetting text-center p-1 border-top border-bottom"
+        <div className="openmorebetting text-center p-1 border-top border-bottom d-flex align-items-center justify-content-center collapsed"
           data-toggle="collapse" href={"#" + collapseID} role="button" aria-expanded="false" aria-controls={collapseID}>
           További fogadások a mérkőzésre
         <i className="fa fa-chevron-down" aria-hidden="true"></i>
@@ -97,4 +99,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default withRouter(connect(null,null)(Home));

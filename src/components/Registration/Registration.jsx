@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
-import * as AuthActions from '../../store/actions/login';
+import * as AuthActions from '../../store/actions/authentication';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import './Registration.css';
 

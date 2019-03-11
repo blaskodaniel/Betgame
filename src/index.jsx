@@ -8,6 +8,7 @@ import { logger } from 'redux-logger';
 import rootReducer from './store/reducers/index';
 //import 'materialize-css/dist/css/materialize.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'animate.css';
 import './index.css';
 import App from './components/App/App';
 import * as serviceWorker from './serviceWorker';

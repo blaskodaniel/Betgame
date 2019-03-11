@@ -1,35 +1,48 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { withRouter } from "react-router";
 import {
   Collapse,
   Navbar,
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem
+  NavItem,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
 } from 'reactstrap';
-
 
 class MainMenu extends Component {
   constructor(props) {
     super(props);
 
     this.toggle = this.toggle.bind(this);
+    this.logout = this.logout.bind(this);
+
     this.state = {
       isOpen: false
     };
   }
+  
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
     });
   }
 
+  logout(){
+    localStorage.removeItem('user');
+    window.location.href = '/login';
+  }
+
   render() {
     return (
       <div>
         <Navbar color="dark" dark expand="md" sticky="top" fixed="top">
-          <NavbarBrand href="/">Bet Game</NavbarBrand>
+          <NavbarBrand href="/">VB2020 Tippjáték</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -39,6 +52,16 @@ class MainMenu extends Component {
               <NavItem>
                 <NavLink activeClassName="active" className="nav-link" to="/about">About</NavLink>
               </NavItem>
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                  Profil
+                </DropdownToggle>
+                <DropdownMenu right>
+                  <DropdownItem onClick={this.logout}>
+                    Kilépés
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
             </Nav>
           </Collapse>
         </Navbar>
@@ -47,4 +70,4 @@ class MainMenu extends Component {
   }
 }
 
-export default MainMenu;
+export default withRouter(connect(null,null)(MainMenu));
