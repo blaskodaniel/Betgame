@@ -1,11 +1,11 @@
-import Config from '../application.config';
+import AppConfig from '../_helpers/application-config';
 export const authService = {
     login,
     logout
 };
 
 function login(username, password) {
-    return axios.post(`${Config.serverUrl}/login`,{email:username,password:password})
+    return axios.post(`${AppConfig.serverUrl}/login`,{email:username,password:password})
         .then(token => {
             if(token){
                 // store user details and jwt token in local storage to keep user logged in between page refreshes

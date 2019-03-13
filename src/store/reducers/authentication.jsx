@@ -36,3 +36,16 @@ export const Login = (state = baseState, action) => {
             return newState
     }
 }
+
+export const Registration = (state = baseState, action) => {
+    const newState = { ...state };
+    switch (action.type) {
+        case 'REGISTER_SUCCESS':
+            return newState;
+        case 'REGISTER_ERROR':
+            newState.msg = action.value.message;
+            return newState;
+        default:
+            return newState
+    }
+}

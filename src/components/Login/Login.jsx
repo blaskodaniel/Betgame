@@ -1,4 +1,4 @@
-import config from '../../application.config';
+import { AppConfig } from '../../_helpers/application-config';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router";
@@ -39,7 +39,7 @@ class Login extends Component {
   }
 
   componentDidMount() {
-    console.log("Login page did mount."+config.Config);
+    console.log("Config serverUrl: " + AppConfig.serverUrl);
   }
 
   handleChange = (e) => {
@@ -68,24 +68,29 @@ class Login extends Component {
     }
     return (
       <div className="d-flex flex-column justify-content-center align-items-center h-100 m-1">
-        <div className="loginContainer bounceIn animated">
+        <div className="loginContainer fadeIn animated">
+          <div className="logo mb-3">
+            <div className="col-md-12 text-center text-white">
+              <h4>Bejelentkezés</h4>
+            </div>
+          </div>
           <Form onSubmit={this.handleSubmit}>
             <FormGroup>
               <Label for="email" hidden>Email</Label>
-              <Input type="email" name="email" autoComplete="off" id="email" placeholder="Email" onChange={this.handleChange} invalid={this.state.submitted && !this.state.email} />
+              <Input type="email" name="email" autoComplete="off" id="email" placeholder="Email cím" onChange={this.handleChange} invalid={this.state.submitted && !this.state.email} />
               <FormFeedback>Email cím kötelező</FormFeedback>
             </FormGroup>
             <FormGroup>
-              <Label for="password" hidden>Password</Label>
-              <Input type="password" name="password" id="password" placeholder="Password" onChange={this.handleChange} invalid={this.state.submitted && !this.state.password} />
+              <Label for="password" hidden>Jelszó</Label>
+              <Input type="password" name="password" id="password" placeholder="Jelszó" onChange={this.handleChange} invalid={this.state.submitted && !this.state.password} />
               <FormFeedback>Jelszó kötelező</FormFeedback>
             </FormGroup>
-            <Button className="w-100">Login</Button>
+            <Button className="w-100" color="primary">Bejelentkezés</Button>
             <Alert className="mt-3" color="danger" isOpen={!loginstate && loginmsg !== null && this.state.submitted}>
               Az email cím vagy jelszó nem megfelelő!
             </Alert>
-            <div className="mt-3">
-              <Link to="/registration">Registration</Link>
+            <div className="mt-3 d-flex flex-column justify-content-center align-items-center">
+              <Link to="/registration" className="text-white no-link">Regisztráció</Link>
             </div>
           </Form>
         </div>

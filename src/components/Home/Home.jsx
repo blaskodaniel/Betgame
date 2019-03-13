@@ -91,7 +91,7 @@ class Home extends Component {
     return (
       <div className="container">
         <div className="row mt-3">
-          <div className="col-12 text-black mx-auto text-center"><h4>Mai mérkőzések</h4></div>
+          <div className="col-12 text-black mx-auto text-center"><h1 className="text-white">Mérkőzések</h1></div>
         </div>
         {this.matchList()}
       </div>
