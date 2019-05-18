@@ -11,9 +11,10 @@ import Notfound from '../404/404';
 
 // Amit kapunk a store-ból
 const mapStateToProps = (state, match) => {
-  console.log("AppComponent: " + JSON.stringify(state))
+  console.log("ReduxStore: " + JSON.stringify(state))
   return {
-    loginstate: state.Login.authentication
+    loginstate: state.Login.authentication,
+    loader: state.Login.loader
   }
 }
 
@@ -42,6 +43,7 @@ class App extends Component {
             </header>
           </div>
           <div className="container-fluid">
+            <div className="loader">Loader: {this.props.loader ? "loading...":"loaded"}</div>
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/home" component={Home} />

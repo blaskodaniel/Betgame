@@ -1,12 +1,6 @@
 import axios from 'axios';
 import {AppConfig} from '../../_helpers/application-config';
-
-export const Loader = (value) => {
-    return {
-        type: "LOADER",
-        value
-    }
-}
+import {Loader} from './loader';
 
 export const Login = (username, password) => {
     return (dispatch, getState) => {
