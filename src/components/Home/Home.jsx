@@ -21,7 +21,6 @@ const fromStore = (state, match) => {
 
 class Home extends Component {
   componentDidMount() {
-    console.log("GetMatches() call..");
     this.props.getmatches();
   }
   matchList = () => {
