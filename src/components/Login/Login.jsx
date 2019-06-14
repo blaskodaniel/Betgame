@@ -1,38 +1,46 @@
-import { AppConfig } from '../../_helpers/application-config';
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { AppConfig } from "../../_helpers/application-config";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { Link } from 'react-router-dom';
-import * as AuthActions from '../../store/actions/authentication';
-import { Button, Form, FormGroup, Label, Input, FormFeedback, Alert } from 'reactstrap';
-import './Login.css';
+import { Link } from "react-router-dom";
+import * as AuthActions from "../../store/actions/authentication";
+import {
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  FormFeedback,
+  Alert
+} from "reactstrap";
+import "./Login.css";
 
 // Amit beküldünk a store-ba (mapDispatchToProps)
-const toStore = (dispatch) => {
+const toStore = dispatch => {
   return {
     login: (email, password) => dispatch(AuthActions.Login(email, password))
-  }
-}
+  };
+};
 
 // Amit kapunk a store-ból (mapStateToProps)
-const fromStore = (state, match) => {
-  console.log("LoginComponent: " + JSON.stringify(state))
+const fromStore = (state) => {
+  //console.log("LoginComponent: " + JSON.stringify(state));
   return {
     loginstate: state.Login.authentication,
     loginmsg: state.Login.msg
-  }
-}
+  };
+};
 
 class Login extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
       submitted: false,
       loginerror: true
-    }
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -42,13 +50,13 @@ class Login extends Component {
     console.log("Config serverUrl: " + AppConfig.serverUrl);
   }
 
-  handleChange = (e) => {
+  handleChange = e => {
     this.setState({
       [e.target.id]: e.target.value
-    })
-  }
+    });
+  };
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
     console.log(this.state);
 
@@ -57,8 +65,7 @@ class Login extends Component {
       this.props.login(this.state.email, this.state.password);
       this.props.history.push("/home");
     }
-
-  }
+  };
 
   render() {
     const { loginstate, loginmsg } = this.props;
@@ -76,21 +83,48 @@ class Login extends Component {
           </div>
           <Form onSubmit={this.handleSubmit}>
             <FormGroup>
-              <Label for="email" hidden>Email</Label>
-              <Input type="email" name="email" autoComplete="off" id="email" placeholder="Email cím" onChange={this.handleChange} invalid={this.state.submitted && !this.state.email} />
+              <Label for="email" hidden>
+                Email
+              </Label>
+              <Input
+                type="email"
+                name="email"
+                autoComplete="off"
+                id="email"
+                placeholder="Email cím"
+                onChange={this.handleChange}
+                invalid={this.state.submitted && !this.state.email}
+              />
               <FormFeedback>Email cím kötelező</FormFeedback>
             </FormGroup>
             <FormGroup>
-              <Label for="password" hidden>Jelszó</Label>
-              <Input type="password" name="password" id="password" placeholder="Jelszó" onChange={this.handleChange} invalid={this.state.submitted && !this.state.password} />
+              <Label for="password" hidden>
+                Jelszó
+              </Label>
+              <Input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Jelszó"
+                onChange={this.handleChange}
+                invalid={this.state.submitted && !this.state.password}
+              />
               <FormFeedback>Jelszó kötelező</FormFeedback>
             </FormGroup>
-            <Button className="w-100" color="primary">Bejelentkezés</Button>
-            <Alert className="mt-3" color="danger" isOpen={!loginstate && loginmsg !== null && this.state.submitted}>
+            <Button className="w-100" color="primary">
+              Bejelentkezés
+            </Button>
+            <Alert
+              className="mt-3"
+              color="danger"
+              isOpen={!loginstate && loginmsg !== null && this.state.submitted}
+            >
               Az email cím vagy jelszó nem megfelelő!
             </Alert>
             <div className="mt-3 d-flex flex-column justify-content-center align-items-center">
-              <Link to="/registration" className="text-white no-link">Regisztráció</Link>
+              <Link to="/registration" className="text-white no-link">
+                Regisztráció
+              </Link>
             </div>
           </Form>
         </div>
@@ -99,4 +133,9 @@ class Login extends Component {
   }
 }
 
-export default withRouter(connect(fromStore, toStore)(Login));
+export default withRouter(
+  connect(
+    fromStore,
+    toStore
+  )(Login)
+);

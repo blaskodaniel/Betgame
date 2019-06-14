@@ -1,5 +1,5 @@
 const baseState = {
-    data: null,
+    data: [],
     msg: ""
 };
 export const GetMatches = (state = baseState, action) => {

@@ -52,7 +52,7 @@ class MainMenu extends Component {
                 <NavLink activeClassName="active" className="nav-link text-white" to="/home">Home</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink activeClassName="active" className="nav-link text-white" to="/about">About</NavLink>
+                <NavLink activeClassName="active" className="nav-link text-white" to="/profil">Profilom</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret className="text-white">

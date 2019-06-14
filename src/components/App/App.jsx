@@ -4,14 +4,14 @@ import { withRouter } from "react-router";
 import { Route, Switch } from 'react-router-dom';
 import MainMenu from '../MainMenu/MainMenu';
 import Login from '../Login/Login';
-import About from '../About/About';
+import Profil from '../Profil/Profil';
 import Home from '../Home/Home';
 import Registration from '../Registration/Registration';
 import Notfound from '../404/404';
 
 // Amit kapunk a store-ból
 const mapStateToProps = (state, match) => {
-  console.log("ReduxStore: " + JSON.stringify(state))
+  //console.log("ReduxStore: " + JSON.stringify(state))
   return {
     loginstate: state.Login.authentication,
     loader: state.Login.loader
@@ -47,7 +47,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/home" component={Home} />
-              <Route path="/about" component={About} />
+              <Route path="/profil" component={Profil} />
               <Route component={Notfound} />
             </Switch>
           </div>

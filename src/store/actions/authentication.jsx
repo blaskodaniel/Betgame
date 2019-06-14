@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {AppConfig} from '../../_helpers/application-config';
 import {Loader} from './loader';
+import * as actionTypes from './actionTypes';
 
 export const Login = (username, password) => {
     return (dispatch, getState) => {
@@ -31,14 +32,14 @@ export const Login = (username, password) => {
 
 export const LoginSuccess = (payload) => {
     return {
-        type: 'LOGIN_SUCCESS',
+        type: actionTypes.LOGIN_SUCCESS,
         value: payload
     }
 }
 
 export const LoginError = (msg) => {
     return {
-        type: 'LOGIN_ERROR',
+        type: actionTypes.LOGIN_ERROR,
         value: msg
     }
 }
@@ -66,14 +67,14 @@ export const Registration = (email, password, name) => {
 
 export const RegisterSuccess = (payload) => {
     return {
-        type: 'REGISTER_SUCCESS',
+        type: actionTypes.REGISTER_SUCCESS,
         value: payload
     }
 }
 
 export const RegisterError = (msg) => {
     return {
-        type: 'REGISTER_ERROR',
+        type: actionTypes.REGISTER_ERROR,
         value: msg
     }
 }

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {AppConfig} from '../../_helpers/application-config';
 import {Loader} from './loader';
+import * as actionTypes from './actionTypes';
 
 export const GetMatches = (query) => {
     return (dispatch, getState) => {
@@ -30,13 +31,13 @@ export const GetMatches = (query) => {
 
 export const GetMatchesSuccess = (payload) => {
     return {
-        type: 'GETMATCHES_SUCCESS',
+        type: actionTypes.GETMATCHES_SUCCESS,
         value: payload
     }
 }
 export const GetMatchesError = (msg) => {
     return {
-        type: 'GETMATCHES_SUCCESS',
+        type: actionTypes.GETMATCHES_ERROR,
         value: msg
     }
 }

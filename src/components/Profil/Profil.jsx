@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './About.css';
+import './Profil.css';
 
-class About extends Component {
+class Profil extends Component {
   constructor(){
     super();
 
@@ -15,11 +15,11 @@ class About extends Component {
   render() {
     return (
       <div>
-        <h1>About page</h1>
+        <h1>Profil page</h1>
         <p>{this.state.infos[0].msg}</p>
       </div>
     );
   }
 }
 
-export default About;
+export default Profil;
