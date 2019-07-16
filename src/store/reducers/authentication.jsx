@@ -8,6 +8,7 @@ if (userToken) {
         username: userToken.username,
         role: userToken.role,
         email: userToken.email,
+        id: userToken.sub,
         authentication: true,
         msg: null
     };
@@ -21,6 +22,7 @@ export const Login = (state = baseState, action) => {
             newState.username = userToken.username;
             newState.role = userToken.role;
             newState.email = userToken.email;
+            newState.id = userToken.sub;
             newState.authentication = true;
             newState.msg = null;
             return newState;

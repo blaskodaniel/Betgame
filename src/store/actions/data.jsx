@@ -41,3 +41,42 @@ export const GetMatchesError = (msg) => {
         value: msg
     }
 }
+
+export const loadUserProfile = (userid) => {
+    return (dispatch) => {
+        // Run page loader
+        dispatch(Loader(true));
+
+        axios.get(`${AppConfig.serverUrl}/api/getuserbyid/${userid}`)
+            .then(data => {
+                if(data){
+                    dispatch(loadUserProfileSuccess(data));
+                }else{
+                    dispatch(loadUserProfileError("Error during download loadUserProfile"));
+                }
+                
+                dispatch(Loader(false));
+            }).catch(err => {
+                if(err.response){
+                    dispatch(loadUserProfileError(err.response.data));
+                }else{
+                    dispatch(loadUserProfileError(err.message));
+                }
+                
+                dispatch(Loader(false));
+            });
+    }
+}
+
+export const loadUserProfileSuccess = (payload) => {
+    return {
+        type: actionTypes.LOADPROFILE_SUCCESS,
+        value: payload
+    }
+}
+export const loadUserProfileError = (msg) => {
+    return {
+        type: actionTypes.LOADPROFILE_ERROR,
+        value: msg
+    }
+}

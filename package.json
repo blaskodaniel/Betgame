@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.0.0-rc.0",
     "animate.css": "^3.7.0",
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",

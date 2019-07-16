@@ -6,6 +6,7 @@ export function authChecker() {
 
     if (user) {
         const decodedToken = JWT(user);
+        console.log("decodedToken: "+JSON.stringify(decodedToken))
         return decodedToken;
     } else {
         return false;
